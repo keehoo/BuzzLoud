@@ -14,7 +14,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         checkPermissions();
         final TextView volume = (TextView) findViewById(R.id.volume);
+        final CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox);
         Button raiseVol = (Button) findViewById(R.id.raise_vol);
         Button lowerVol = (Button) findViewById(R.id.lower_vol);
         Button unmute = (Button) findViewById(R.id.unmute);
@@ -57,6 +61,13 @@ public class MainActivity extends AppCompatActivity {
                 setVolumeText(volume, audio);
             }
         });
+        
+       checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+           @Override
+           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               (new SharedPrefsHelper(MainActivity.this)).setUnmuteUponIncommingSMS(isChecked);
+           }
+       });
     }
 
     public void checkPermissions() {
