@@ -28,7 +28,12 @@ public class OutOfMuteService extends Service {
             audio.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0);
             Log.d("Service", "Should be un muted now");
         }
+        stopSelf();
+    }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("Service", "Destroyed");
     }
 }
