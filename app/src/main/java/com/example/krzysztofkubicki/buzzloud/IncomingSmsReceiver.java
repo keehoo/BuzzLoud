@@ -29,17 +29,22 @@ public class IncomingSmsReceiver extends BroadcastReceiver {
                 }
                 if (null != currentMessage) {
                     String senderNum = currentMessage.getDisplayOriginatingAddress();
-                    String message = currentMessage.getDisplayMessageBody();
+                    String message = currentMessage.getDisplayMessageBody().trim();
                     Log.i("SmsReceiver", "senderNum: " + senderNum + "; message: " + message);
                     // Show Alert
-                    int duration = Toast.LENGTH_LONG;
-                    Toast toast = Toast.makeText(context,
-                            "senderNum: " + senderNum + ", message: " + message, duration);
-                    toast.show();
+
+                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+
+                    if (messageContainsWakeUpCommand(message))
+                   
                     context.startService(new Intent(context, OutOfMuteService.class));
                 }
             }
         } // end for loop
+    }
+
+    private boolean messageContainsWakeUpCommand(String message) {
+        return (message.contains("wtfru"));
     }
 
     @NonNull
