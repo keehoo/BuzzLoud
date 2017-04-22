@@ -3,6 +3,7 @@
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/background"
     android:layout_height="match_parent"
     tools:context="com.example.krzysztofkubicki.buzzloud.SettingsActivity">
 
@@ -10,6 +11,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary2"
         android:text="Set up unmute command, that is the character set that will unmute the device.
 If this sentence gets detected in the SMS you sent to locate your phone it will unmute your phone.
 If you have previously set a unmute keyword it should be displayed in the field below.
@@ -20,6 +22,7 @@ You can only add 1 unmute keyword, should you want to add more, please contact m
 
 
     <EditText
+        android:textColor="@color/colorPrimary2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Put the key word here"
@@ -27,6 +30,7 @@ You can only add 1 unmute keyword, should you want to add more, please contact m
         android:id="@+id/editTextSetUnmuteCommand"/>
 
     <Button
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addUnmuteCommandButton"

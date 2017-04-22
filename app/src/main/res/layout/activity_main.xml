@@ -1,53 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
     tools:context="com.example.krzysztofkubicki.buzzloud.MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:orientation="horizontal">
+
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Volume value : "
-  />
+        android:text="Current volume value : "
+        android:textColor="@color/colorPrimary2" />
 
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/volume"
-    />
+    <TextView
+        android:id="@+id/volume"
+        android:padding="10dp"
+        android:textColor="@color/colorPrimary2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
+    </LinearLayout>
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/raise_vol"
-        android:text="Raise Vol"/>
-
-    <Button
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Raise Vol" />
+
+    <Button
+
         android:id="@+id/lower_vol"
-        android:text="Lower Vol"/>
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lower Vol" />
 
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
         android:id="@+id/unmute"
-        android:text="Unmute"/>
-
-    <Button
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Unmute" />
+
+    <Button
+
         android:id="@+id/setWakeUpCommands"
-        android:text="Set Wake Up Commands"/>
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set Wake Up Commands" />
 
 
     <CheckBox
         android:id="@+id/checkBox"
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Should Unmute While Sms Arrives" />
+        style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+        android:text="Should Unmute While Sms Arrives"
+        android:textColor="@color/colorPrimary2"/>
 
 </LinearLayout>
