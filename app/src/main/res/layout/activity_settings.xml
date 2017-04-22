@@ -10,17 +10,20 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Set up unmute command, this is the character set that will unmute the device.
-If this sentence detected in the SMS you sent to locate your phone it will unmute your phone.
+        android:text="Set up unmute command, that is the character set that will unmute the device.
+If this sentence gets detected in the SMS you sent to locate your phone it will unmute your phone.
 If you have previously set a unmute keyword it should be displayed in the field below.
 Cliking Add button will overwrite the keyword with whatever is in the text field.
-THere's also a hard coded sentence that will alway unmute your device. That is 'wtfru'"/>
+THere's also a hard coded sentence that will alway unmute your device. That is 'wtfru'
+You can only add 1 unmute keyword, should you want to add more, please contact me at kkubicki2@gmail.com.
+"/>
 
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Put the key word here"
+        android:layout_gravity="center_vertical"
         android:id="@+id/editTextSetUnmuteCommand"/>
 
     <Button

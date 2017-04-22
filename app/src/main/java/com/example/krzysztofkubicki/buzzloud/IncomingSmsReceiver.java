@@ -33,7 +33,7 @@ public class IncomingSmsReceiver extends BroadcastReceiver {
                 }
                 if (null != currentMessage) {
                     String senderNum = currentMessage.getDisplayOriginatingAddress();
-                    String message = currentMessage.getDisplayMessageBody().trim();
+                    String message = currentMessage.getDisplayMessageBody().trim().toLowerCase();
 
                     Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
 
@@ -52,7 +52,7 @@ public class IncomingSmsReceiver extends BroadcastReceiver {
     private boolean messageContainsCustomUnmuteCommands(String message) {
 
         SharedPrefsHelper sharedPrefsHelper = new SharedPrefsHelper(c);
-        String unmuteKeyword = sharedPrefsHelper.getUnmuteKeyword();
+        String unmuteKeyword = sharedPrefsHelper.getUnmuteKeyword().trim().toLowerCase();
         return (message.contains(unmuteKeyword));
     }
 
