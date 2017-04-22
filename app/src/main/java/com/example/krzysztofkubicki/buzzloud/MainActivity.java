@@ -22,16 +22,13 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    public boolean allowUnmuting;
-    private SharedPrefsHelper sharedPrefsHelper;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        allowUnmuting = false;
+        boolean allowUnmuting = false;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         checkPermissions();
-        sharedPrefsHelper = new SharedPrefsHelper(getApplicationContext());
+        SharedPrefsHelper sharedPrefsHelper = new SharedPrefsHelper(getApplicationContext());
         final TextView volume = (TextView) findViewById(R.id.volume);
         final CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox);
         checkBox.setChecked(sharedPrefsHelper.shouldUnmuteWhileSmsArrives());
@@ -74,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 (new SharedPrefsHelper(getApplicationContext())).setUnmuteUponIncommingSMS(isChecked);
+                setVolumeText(volume, audio);
             }
         });
 

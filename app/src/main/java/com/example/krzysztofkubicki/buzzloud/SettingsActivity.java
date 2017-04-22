@@ -21,6 +21,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         sharedPrefsHelper = new SharedPrefsHelper(getApplicationContext());
         editText = (EditText) findViewById(R.id.editTextSetUnmuteCommand);
+        editText.setText(sharedPrefsHelper.getUnmuteKeyword());
         button = (Button) findViewById(R.id.addUnmuteCommandButton);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -28,6 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String keyWord = editText.getText().toString();
                 sharedPrefsHelper.addUnmuteKeyword(keyWord);
+                finish();
             }
         });
 

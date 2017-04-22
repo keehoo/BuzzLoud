@@ -37,6 +37,6 @@ public class SharedPrefsHelper {
     }
 
     public String getUnmuteKeyword() {
-        return sharedPreferences.getString(UNMUTE_KEYWORD, "error" );
+        return sharedPreferences.getString(UNMUTE_KEYWORD, "Default keyword is wtfru" );
     }
 }
