@@ -12,6 +12,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     public boolean allowUnmuting;
+    private SharedPrefsHelper sharedPrefsHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +31,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         checkPermissions();
+        sharedPrefsHelper = new SharedPrefsHelper(getApplicationContext());
         final TextView volume = (TextView) findViewById(R.id.volume);
         final CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox);
+        checkBox.setChecked(sharedPrefsHelper.shouldUnmuteWhileSmsArrives());
+        Log.d("Debug", "Unmute key: " + sharedPrefsHelper.getUnmuteKeyword());
+        Log.d("Debug", String.valueOf("Should unmute on sms? " + sharedPrefsHelper.shouldUnmuteWhileSmsArrives()));
         Button raiseVol = (Button) findViewById(R.id.raise_vol);
         Button lowerVol = (Button) findViewById(R.id.lower_vol);
         Button unmute = (Button) findViewById(R.id.unmute);
@@ -63,13 +69,13 @@ public class MainActivity extends AppCompatActivity {
                 setVolumeText(volume, audio);
             }
         });
-        
-       checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-           @Override
-           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-               (new SharedPrefsHelper(getApplicationContext())).setUnmuteUponIncommingSMS(isChecked);
-           }
-       });
+
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                (new SharedPrefsHelper(getApplicationContext())).setUnmuteUponIncommingSMS(isChecked);
+            }
+        });
 
         setWakeUpCommands.setOnClickListener(new View.OnClickListener() {
             @Override

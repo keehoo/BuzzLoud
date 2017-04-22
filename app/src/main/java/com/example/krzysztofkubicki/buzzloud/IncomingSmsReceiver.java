@@ -11,13 +11,17 @@ import android.widget.Toast;
 
 public class IncomingSmsReceiver extends BroadcastReceiver {
 
+    private Context c;
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
+
+        c = context;
+
         SharedPrefsHelper helper = new SharedPrefsHelper(context);
         boolean shouldUnmuteWhileSmsArrives = helper.shouldUnmuteWhileSmsArrives();
-        Log.d("onReceive", String.valueOf(shouldUnmuteWhileSmsArrives));
+        Log.d("DEBUG", String.valueOf(shouldUnmuteWhileSmsArrives));
 
         if (shouldUnmuteWhileSmsArrives) {
             final Object[] pdusObj = getPdusObjectArray(intent);
@@ -30,21 +34,26 @@ public class IncomingSmsReceiver extends BroadcastReceiver {
                 if (null != currentMessage) {
                     String senderNum = currentMessage.getDisplayOriginatingAddress();
                     String message = currentMessage.getDisplayMessageBody().trim();
-                    Log.i("SmsReceiver", "senderNum: " + senderNum + "; message: " + message);
-                    // Show Alert
 
                     Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
 
                     if (messageContainsWakeUpCommand(message))
-                   
-                    context.startService(new Intent(context, OutOfMuteService.class));
+
+                        context.startService(new Intent(context, OutOfMuteService.class));
                 }
             }
         } // end for loop
     }
 
     private boolean messageContainsWakeUpCommand(String message) {
-        return (message.contains("wtfru"));
+        return (message.contains("wtfru") || messageContainsCustomUnmuteCommands(message));
+    }
+
+    private boolean messageContainsCustomUnmuteCommands(String message) {
+
+        SharedPrefsHelper sharedPrefsHelper = new SharedPrefsHelper(c);
+        String unmuteKeyword = sharedPrefsHelper.getUnmuteKeyword();
+        return (message.contains(unmuteKeyword));
     }
 
     @NonNull
