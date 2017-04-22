@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         Button raiseVol = (Button) findViewById(R.id.raise_vol);
         Button lowerVol = (Button) findViewById(R.id.lower_vol);
         Button unmute = (Button) findViewById(R.id.unmute);
+        Button setWakeUpCommands = (Button) findViewById(R.id.setWakeUpCommands);
+
         final AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         setVolumeText(volume, audio);
 
@@ -68,6 +70,14 @@ public class MainActivity extends AppCompatActivity {
                (new SharedPrefsHelper(getApplicationContext())).setUnmuteUponIncommingSMS(isChecked);
            }
        });
+
+        setWakeUpCommands.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void checkPermissions() {
