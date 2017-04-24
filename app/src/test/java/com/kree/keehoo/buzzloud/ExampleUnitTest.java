@@ -1,4 +1,4 @@
-package com.example.krzysztofkubicki.buzzloud;
+package com.kree.keehoo.buzzloud;
 
 import org.junit.Test;
 

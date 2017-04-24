@@ -1,4 +1,4 @@
-package com.example.krzysztofkubicki.buzzloud;
+package com.kree.keehoo.buzzloud;
 
 import android.app.Service;
 import android.content.Context;

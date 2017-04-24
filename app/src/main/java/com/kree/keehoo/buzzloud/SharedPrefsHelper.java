@@ -1,4 +1,4 @@
-package com.example.krzysztofkubicki.buzzloud;
+package com.kree.keehoo.buzzloud;
 
 import android.content.Context;
 import android.content.SharedPreferences;

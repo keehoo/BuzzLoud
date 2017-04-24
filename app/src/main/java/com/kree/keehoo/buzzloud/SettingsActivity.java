@@ -1,4 +1,4 @@
-package com.example.krzysztofkubicki.buzzloud;
+package com.kree.keehoo.buzzloud;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

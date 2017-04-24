@@ -1,7 +1,8 @@
-package com.example.krzysztofkubicki.buzzloud;
+package com.kree.keehoo.buzzloud;
 
 import android.Manifest;
 import android.app.NotificationManager;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -22,9 +23,10 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        boolean allowUnmuting = false;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         checkPermissions();
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Debug", String.valueOf("Should unmute on sms? " + sharedPrefsHelper.shouldUnmuteWhileSmsArrives()));
         Button raiseVol = (Button) findViewById(R.id.raise_vol);
         Button lowerVol = (Button) findViewById(R.id.lower_vol);
+        Button bluetooth = (Button) findViewById(R.id.enableBluetooth);
         Button unmute = (Button) findViewById(R.id.unmute);
         Button setWakeUpCommands = (Button) findViewById(R.id.setWakeUpCommands);
 
@@ -80,6 +83,25 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        bluetooth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+                if (null != bluetoothAdapter) {
+                    boolean isEnabled = bluetoothAdapter.isEnabled();
+                    if (!isEnabled) {
+                        bluetoothAdapter.enable();
+                        startActivity(new Intent(MainActivity.this, DeviceScanActivity.class));
+                    } else {
+                        bluetoothAdapter.disable();
+                    }
+                    // No need to change bluetooth state
+                }
+                else
+                    Toast.makeText(MainActivity.this, "It looks like I can't find your bluetooth adapter. Too bad :(", Toast.LENGTH_SHORT).show();
             }
         });
     }
